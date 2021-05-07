@@ -7,12 +7,12 @@ declare(strict_types=1);
  *
  * This source file is available under two different licenses:
  * - GNU General Public License version 3 (GPLv3)
- * - Pimcore Enterprise License (PEL)
+ * - Pimcore Commercial License (PCL)
  * Full copyright and license information is available in
  * LICENSE.md which is distributed with this source code.
  *
- * @copyright  Copyright (c) Pimcore GmbH (http://www.pimcore.org)
- * @license    http://www.pimcore.org/license     GPLv3 and PEL
+ *  @copyright  Copyright (c) Pimcore GmbH (http://www.pimcore.org)
+ *  @license    http://www.pimcore.org/license     GPLv3 and PEL
  */
 
 namespace Pimcore\Controller\Config;
@@ -25,6 +25,8 @@ use Symfony\Component\HttpKernel\KernelInterface;
 /**
  * Provides bundle/controller/action/template selection options which can be
  * used to configure controller + template for documents or static routes.
+ *
+ * @internal
  */
 class ControllerDataProvider
 {
@@ -161,11 +163,6 @@ class ControllerDataProvider
         }
 
         $templates = [];
-
-        $appPath = realpath(implode(DIRECTORY_SEPARATOR, [PIMCORE_APP_ROOT, 'Resources', 'views']));
-        if ($appPath && is_dir($appPath)) {
-            $templates = array_merge($templates, $this->findTemplates($appPath));
-        }
 
         $symfonyPath = realpath(implode(DIRECTORY_SEPARATOR, [PIMCORE_PROJECT_ROOT, 'templates']));
         if ($symfonyPath && is_dir($symfonyPath)) {
